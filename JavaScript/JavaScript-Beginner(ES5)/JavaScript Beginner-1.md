@@ -275,4 +275,207 @@
     
     - 년, 월, 일, 시, 분, 초, 밀리s
 
-- 
+- 프로퍼티 리스트
+  
+  | 이름                    | 개요                                         |
+  | --------------------- | ------------------------------------------ |
+  | new Date( )           | 인스턴스 생성                                    |
+  | Date 함수               |                                            |
+  | Date( )               | 현재 시각 반환                                   |
+  | Date.parse( )         | 문자열 값을 밀리초로 변환                             |
+  | Date.UTC( )           | UTC 기준 밀리초로 변환                             |
+  | Date.now( )           | 현재 시각을 밀리초로 반환                             |
+  | Date.prototype        |                                            |
+  | constructor           | 생성자                                        |
+  | toString( )           | 일자와 시간을 변환해서 문자열로 반환                       |
+  | toUTCString( )        | UTC 일자와 시간 반환                              |
+  | toISOString( )        | ISO 8601 확장 형식의 간소화 버전 형태로 일자와 시간 반환       |
+  | toDateString( )       | 연월일과 요일을 사람이 읽기 쉬운 형태로 반환                  |
+  | toTimeString( )       | 시분초와 타임존을 사람이 읽기 쉬운 형태로 반환                 |
+  | toLocaleString( )     | 일자와 시간을 지역 언어로 반환                          |
+  | toLocaleDateString( ) | 연월일을 지역 언어로 반환                             |
+  | toLocaleTimeString( ) | 시분초와 오전/오후를 지역 언어로 반환                      |
+  | toJSON( )             | JSON.stringify( )와 연동하여 JSON 형태의 일자, 시간 설정 |
+  
+  | Date.prototype        |                       |
+  | --------------------- | --------------------- |
+  | valueOf( )            | 프리미티브 시간값 반환          |
+  | getTime( )            | 시간값 반환                |
+  | getFullYear( )        | 연도 반환                 |
+  | getYear( )            | 세기 구분과 연도 2자리 반환      |
+  | getMonth( )           | 월 반환                  |
+  | getDate( )            | 일 반환                  |
+  | getDay( )             | 요일 반환                 |
+  | getHours( )           | 시 반환                  |
+  | getMinutes( )         | 분 반환                  |
+  | getTimezoneOffset( )  | UTC와 지역 시간 차이를 분으로 반환 |
+  | getSeconds( )         | 초 반환                  |
+  | getMilliseconds( )    | 밀리초 반환                |
+  | getUTCFullYear( )     | UTC 연도 반환             |
+  | getUTCMonth( )        | UTC 월 반환              |
+  | getUTCDate( )         | UTC 일 반환              |
+  | getUTCDay( )          | UTC 요일 반환             |
+  | getUTCHours( )        | UTC 시 반환              |
+  | getUTCMinutes( )      | UTC 분 반환              |
+  | getUTCSeconds( )      | UTC 초 반환              |
+  | getUTCMilliseconds( ) | UTC 밀리초 반환            |
+
+- new Date( )
+  
+  - Date 인스턴스 생성
+    
+    - 파라미터 값에 년, 월을 제외한 일, 시, 분, 초, 밀리초는 선택
+      
+      ```javascript
+      var obj = new Date(2020, 0);
+      console.log(obj); Wed Jan 01 2020 00:00:00 GMT+0900 (한국 표준시)
+      ```
+      
+      - 월은 0부터 시작
+  
+  - 파라미터를 작성하지 않으면
+    
+    - 현재 시간
+      
+      ```javascript
+      console.log(new Date());
+      ```
+  
+  - 파라미터를 문자열로 작성하면
+    
+    - `-`사용시 주의
+      
+      ```javascript
+      console.log(new Date("2020-01"));
+      // Wed Jan 01 2020 09:00:00 GMT+0900 (한국 표준시)
+      ```
+      
+      - 01 이 Feb가 아니라 Jan가 되어버림
+
+### 6.14. Math 오브젝트
+
+- Math 오브젝트
+  
+  - 수학 계산용 오브젝트
+    
+    - 상수, 절댓값, 사인, 탄젠트 등
+  
+  - new 연산자로 인스턴스 생성 불가
+  
+  - 메소드가 아니라 함수
+    
+    - Math.abs(값) 형태
+
+- Math 함수
+  
+  | 이름        | 개요                |
+  | --------- | ----------------- |
+  | abs( )    | 절댓값 반환            |
+  | floor( )  | 소수 이하 버림, 정숫값 반환  |
+  | ceil( )   | 소수 이하 올림, 정숫값 반환  |
+  | round( )  | 소수 이하 반올림, 정숫값 반환 |
+  | max( )    | 최댓값               |
+  | min( )    | 최솟값               |
+  | random( ) | 0에서 1미만 난수        |
+  | pow( )    | x의 y자승 값          |
+
+- abs( )
+  
+  - 음수를 양수로 변환한 절댓값 반환
+    
+    ```javascript
+    console.log(Math.abs(-11)); // 11
+    console.log(Math.abs(-Infinity)); // Infinity
+    ```
+
+- floor( )
+  
+  - 소수 이하 버림, 정숫값 반환
+    
+    소수 이하 값이 있으면서 음수이면 -1을 더해 반환
+    
+    ```javascript
+    console.log(Math.floor(3.3)); // 3
+    console.log(Math.floor(-1.1)); // -2 
+    console.log(Math.floor(-1.9)); // -2
+    ```
+
+- ceil( )
+  
+  - 소수 이하 올림, 정숫값 반환
+    
+    ```javascript
+    console.log(Math.ceil(3.1)); // 4
+    console.log(Math.ceil(-1.6)); // -1
+    console.log(Math.ceil(-0.1)); // 0
+    ```
+
+- round( )
+  
+  - 소수 이하 반올림, 정숫값 반환
+  
+  - 양수이면 반올림, 음수이면 반내림
+    
+    ```javascript
+    console.log(Math.round(3.1)); // 3
+    console.log(Math.round(3.5)); // 4
+    console.log(Math.round(-1.6)); // -2
+    console.log(Math.round(-1.1)); // -1
+    ```
+
+- max( )
+  
+  - 파라미터 값 중에서 가장 큰 값을 반환
+  
+  - 파라미터 값을 전부 숫자로 변환하여 비교
+  
+  - NaN(숫자가 아닌 값)이 하나라도 있으면 NaN 반환
+    
+    ```javascript
+    console.log(Math.max(1,4,7)); // 7
+    console.log(Math.max(1,4,"7")); // 7
+    console.log(Math.max(1,4,NaN)); // NaN
+    console.log(Math.max(1,4,"a")); // NaN
+    ```
+
+- min( )
+  
+  - 파라미터 값 중에서 가장 작은 값을 반환
+  
+  - 파라미터 값을 전부 숫자로 변환하여 비교
+  
+  - NaN(숫자가 아닌 값)이 하나라도 있으면 NaN 반환
+    
+    ```javascript
+    console.log(Math.min(1,4,7)); // 1
+    console.log(Math.min(2,4,"1")); // 1
+    ```
+
+- pow( )
+  
+  - 파라미터 x값의 y승 값을 반환
+  
+  - y가 0일 때 x가 NaN이라도 1을 반환
+  
+  - y가 NaN이면 NaN을 반환
+  
+  - 두번째 파라미터를 작성하지 않으면 NaN
+    
+    ```javascript
+    console.log(Math.pow(10,2)); // 10
+    console.log(Math.pow(10,0)); // 1
+    console.log(Math.pow("10",2)); // 100
+    console.log(Math.pow("a",2)); // NaN
+    console.log(Math.pow(10,"a")); // NaN
+    console.log(Math.pow(10)); // NaN
+    ```
+
+- random( )
+  
+  - 0에서 1미만 사이의 난수 반환
+    
+    ```javascript
+    console.log(Math.random()); // 0.735866653596827
+    ```
+    
+    
