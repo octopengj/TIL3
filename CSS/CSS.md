@@ -694,8 +694,6 @@
   
   - 값의 일부가 일치하는 속성을 가진 요소를 찾아 스타일 적용
 
-
-
 - 가상클래스
   
   | 표기       | 설명                                                |
@@ -749,3 +747,557 @@
   - `::first-line`: 특정 요소의 첫번째 줄에 스타일 적용
   
   - `::first-letter`: 특정 요소의 첫번째 글자에 스타일 적용
+
+
+
+## 8. 변형, 애니메이션
+
+- 변형(transform)
+  
+  - 2차원 변형
+    
+    - 수평이나 수직으로 요소 변형
+    
+    - 크기나 각도만 지정
+    
+    - 2차원 좌표 사용
+    
+    - 이동 px단위, 숫자단위로 확대, deg 각도 조절 사용법에 차이가 있음
+  
+  - 3차원 변형
+    
+    - x축과 y축에 원근감 추가
+    
+    - z축은 앞뒤로 이동 보는 사람 쪽으로 다가올 수록 값이 커짐
+
+- 2차원 변형 함수
+  
+  | 함수              | 설명                        |
+  | --------------- | ------------------------- |
+  | translate(x, y) | 지정한 크기만큼 x, y축으로 이동       |
+  | translateX(x)   | 지정한 x만큼 x축으로 이동           |
+  | translateY(y)   | 지정한 y만큼 y축으로 이동           |
+  | scale(x, y)     | 지정한 크기만큼 x, y축으로 확대 \| 축소 |
+  | scaleX(x)       | 지정한 x만큼 x축 확대 \| 축소       |
+  | scaleY(y)       | 지정한 y만큼 y축 확대 \| 축소       |
+  | rotate(각도)      | 지정한 각도만큼 회전               |
+  | skew(x, y)      | 지정한 각도만큼 x, y 축으로 왜곡      |
+  | skewX(x)        | 지정한 x만큼 x축으로 왜곡           |
+  | skewY(y)        | 지정한 y만큼 y축으로 왜곡           |
+
+- 3차원 변형 함수
+  
+  | 함수                    | 설명                                        |
+  | --------------------- | ----------------------------------------- |
+  | matrix3d(n [, n])     | 4*4 행렬을 이용해 이동과 확대 \| 축소, 회전 등의 변환을 지정    |
+  | translate3d(x, y, z)  | 지정한 크기만큼 x, y, z축으로 이동                    |
+  | translateZ(z)         | 지정한 크기만큼 z축으로 이동                          |
+  | scale3d(x, y, z)      | 지정한 크기만큼 x, y,z 축으로 확대 \| 축소              |
+  | scaleZ(z)             | 지정한 크기만큼 z축으로 확대 \| 축소                    |
+  | rotate3d(x, y, z, 각도) | 지정한 각도만큼 회전                               |
+  | rotateX(각도)           | 지정한 각도만큼 x축으로 회전                          |
+  | rotateY(각도)           | 지정한 각도만큼 y축으로 회전                          |
+  | rotateZ(각도)           | 지정한 각도만큼 z축으로 회전                          |
+  | perspective(길이)       | 입체적으로 보일 수 있는 깊이 값을 지정, 값이 클수록 사용자로부터 멀어짐 |
+
+- transform-origin
+  
+  - 특정 지점을 변형의 기준으로 설정
+  
+  - 대표적으로 한쪽 모서리를 기준으로 기울어진 모습
+    
+    transform-origin: x축 y축 z축 | initial | inherit ;
+
+- perspective-origin
+  
+  - 입체적으로 표현할 요소의 아랫부분 위치 지정
+  
+  - 좀더 높은 곳에서 원근을 조절하는 듯한 느낌을 갖게 함
+
+- transform-style
+  
+  - flat: 하위 요소를 평면으로 처리
+    
+    - box1과 box2(하위)가 있을 때 box1은 rotateY를 하고 box2는 rotateX를 해도 box2에 3D효과가 없음
+  
+  - preserve-3d: 하위 요소들에 3D효과를 적용
+    
+    - 위와 같은 경우에 box1의 위치만큼 이동을하고나서 box2의 위치를 3D효과를 적용해서 box2가 이동함
+
+- backface-visivility 
+  
+  - 요소의 뒷면을 표시할 것인지 결정
+  
+  - visible (기본값)
+  
+  - hidden 뒷면을 표시하지 않음
+  
+  - 카드 뒤집기
+
+
+
+- 트랜지션
+  
+  - 요소의 스타일이 시간의 흐름에 따라 서서히 변하는 것
+  
+  - 속성
+    
+    | 속성                         | 설명              |
+    | -------------------------- | --------------- |
+    | transition-property        | 대상 설정           |
+    | transition-duration        | 진행 시간 설정        |
+    | transition-timing-function | 속도 곡선을 설정       |
+    | transition-delay           | 지연 시간을 설정       |
+    | transition                 | 축약형, 속성을 한번에 사용 |
+  
+  - transition-property
+    
+    | 속성 값  | 설명                                                                   |
+    | ----- | -------------------------------------------------------------------- |
+    | all   | all 값을 사용하거나 transition-property를 생략할 경우, 요소의 모든 속성이 트랜지션 대상이 됨, 기본값 |
+    | none  | 트랜지션 동안 아무 속성도 바뀌지 않음                                                |
+    | 속성 이름 | 적용할 속성 이름을 지정                                                        |
+  
+  - transition-duration 
+    
+    - 트랜지션 진행 시간 설정
+    
+    - 단위는 초, 밀리초
+    
+    - 여러개라면 쉼표로 시간 지정
+  
+  - transition-timing-function
+    
+    - 트랜지션의 시작, 중간, 끝 속도 지정
+      
+      | 속성 값                  | 설명                               |
+      | --------------------- | -------------------------------- |
+      | linear                | 시작부터 끝까지 같은 속도로 진행               |
+      | ease                  | 처음에는 천천히 시작, 빨라졌다가 마지막에 천천히, 기본값 |
+      | ease-in               | 시작을 느리게                          |
+      | ease-out              | 끝을 느리게                           |
+      | ease-in-out           | 시작과 끝을 느리게                       |
+      | cubic-bezier(n,n,n,n) | 배지에 함수를 직접 정의해 사용, n의 값은 0~1     |
+  
+  - transition-delay
+    
+    - 트랜지션이 언제부터 시작될지 지연 시간 설정
+    
+    - 단위는 초, 밀리초
+
+
+
+- 애니메이션
+  
+  - 애니메이션 주요 속성
+    
+    | 속성                        | 설명                                                  |
+    | ------------------------- | --------------------------------------------------- |
+    | @keyframes                | 애니메이션이 바뀌는 지점을 설정                                   |
+    | animation-delay           | 애니메이션 지연 시간을 지정                                     |
+    | animation-direction       | 애니메이션 종료 후 처음부터 시작할지, 역방향으로 진행할지를 지정                |
+    | animation-duration        | 애니메이션 실행 시간을 설정                                     |
+    | animation-fill-mode       | 애니메이션이 종료되었거나 지연되어 애니메이션이 실행되지 않는 상태일 때 요소의 스타일을 지정 |
+    | animation-iteration-count | 애니메이션 반복 횟수를 지정                                     |
+    | animation-name            | @keyframes로 설정해 좋은 중간 상태의 이름을 지정                    |
+    | animation-play-state      | 애니메이션을 멈추거나 다시 시작                                   |
+    | animation-timing-function | 애니메이션의 속도 곡선을 지정                                    |
+    | animation                 | 단축속성                                                |
+  
+  - @keyframes 
+    
+    - '이름'작성 필수
+    
+    - 시작 위치는 0%, 끝 위치는 100%, 중간에 단계 %로 추가
+    
+    - 처음과 끝만 있다면 from, to로 설정 가능 
+  
+  - animation-name
+    
+    - @keyframes 속성에서 만든 애니메이션 이름을 사용
+    
+    - 사용할 대상에 animation-name을 작성하는 것임
+    
+    ```css
+    #box {
+        animation-name: circle;
+        animation-duration: 2s;
+    }
+    @keyframes circle {
+        from {
+        
+        }
+        to {
+        
+        }
+    }
+    ```
+  
+  - animation-direction
+    
+    - 애니메이션이 끝난 후 원래 위치로 돌아가거나 반대 방향으로 애니메이션을 실행하도록 지정
+    
+    - normal: 실행이 끝나면 원래 위치로 돌아감, 기본값
+    
+    - alternate: 실행이 끝나면 왔던 방향으로 되돌아가면서 애니메이션을 실행
+  
+  - animation-iteration-count
+    
+    - 애니메이션 반복 횟수 지정
+    
+    - 숫자: 숫자만큼 반복, 기본값은 1
+    
+    - infinite: 무한 반복
+  
+  - animation-timin-function
+    
+    - transition-timing-function과 속성이 같음
+  
+  - animation 단축
+    
+    - 지정하지 않은 속성은 기본 값을 사용, but animation-duration 속성 값은 필수 지정
+      
+      ```css
+      .box {
+          animation-name: move;
+          animation-duration: 2s;
+          animation-timing-function: ease-in;
+          animation-direction: alternate;
+          animation-iteration-count: infinite;
+      }
+      
+      .box {
+          animation: move 2s alternate infinite ease-in;
+      }
+      ```
+
+
+
+## 9. 반응형 웹
+
+다양한 화면 크기의 기기들에 크기를 맞춰 자동으로 바꾸어 사이트를 구형하는 디자인
+
+- 뷰포트: 실제 내용이 표시되는 영역
+
+- 뷰포트 지정
+  
+  - head 태그 안에서 meta 태그를 이용해 뷰포트 지정
+    
+    ```html
+    <meta name="viewport" content="width=divice-width, initial-scale=1">
+    ```
+    
+    | 속성            | 설명                      | 사용 가능 값             | 기본 값      |
+    | ------------- | ----------------------- | ------------------- | --------- |
+    | width         | 뷰포트 너비                  | device-width \| 크기  | 브라우저 기본 값 |
+    | height        | 뷰포트 높이                  | device-heithg \| 크기 | 브라우저 기본 값 |
+    | user-scalable | 확대/축소 가능 여부             | yes \| no           | yes       |
+    | initial-scale | 초기화면 확대/축소 값            | 1~10                | 1         |
+    | minimum-scale | 확대여부가 yes라면, 최소 확대/축소 값 | 0~10                | 0.25      |
+    | maximum-scale | 확대여부가 yes라면, 최대 확대/축소 값 | 0~10                | 1.6       |
+
+
+
+- 그리드 시스템
+  
+  - 화면을 여러개의 칼럼으로 나누어, 필요할 때마다 칼럼들을 묶어서 배치하는 방법
+  
+  - 화면 너비에 따라 960그리드, 1200그리드 시스템 등으로 나뉨
+  
+  - 칼럼 개수에 따라 12칼럼, 16칼럼, 24칼럼 그리드 시스템 등으로 나뉨
+  
+  - 주로 960픽셀 12칼럽의 그리드 시스템 사용
+  
+  - 고정 그리드: 화면 너비를 일정하게 고정하고 레이아웃 생성 
+    
+    - 고정그리드를 사용하면 화면 너비가 좁아질경우 화면의 일부터 가려짐
+  
+  - 가변 그리드: 화면 너비를 %와 같이 가변값으로 지정
+    
+    - 화면의 크기에 따라 내용의 크기가 조정되어 화면에 보여짐
+    
+    - 전체를 감싸는 요소의 너비를 %로 변환(꽉 채우면 100%)
+    
+    - 전체를 감싸는 요소의 너비를 기준으로 각 요소의 너비를 계산
+      
+      (요소의 너비 / 콘텐츠 전체를 감싸는 요소의 너비) / 100
+
+
+
+- 가변 글꼴
+  
+  - em 단위
+    
+    - 부모 요소 폰트의 대문자 M 너비를 1em으로 지정
+    
+    - 1em = 16px
+  
+  - rem 단위
+    
+    - em 단위는 부모의 요소가 중첩될 경우 글자의 크기가 계속 달라짐
+    
+    - rem은 처음부터 기본 크기를 지정하고 그것을 기준으로 글자 크기 지정
+
+
+
+- 가변 이미지
+  
+  - 가변 이미지로 만들면 창의 너비에 따라 이미지 너비도 조절됨
+    
+    이미지를 화면크기에 따라서 100% 보여줌
+    
+    ```css
+    .content img {
+        max-width: 100%;
+        height: auto;
+    }
+    ```
+  
+  - img 태그와 srcset 속성
+    
+    - 화면 너비 값이나 픽셀 밀도에 따라 고해상도의 이미지 지정 가능
+      
+      ```html
+      <img src="images/ball.jpg" srcset="images/ball-hd.jpg 2x"> 
+      ```
+      
+      밀도가 2배이면 ball-hd이미지를 보여주고 그렇지 않으면 ball 이미지를 보여줘
+  
+  - picture 태그와 source 태그
+    
+    - 화면 해상도뿐만 아니라 화면 너비에 따라 다른 이미지 파일 표시
+      
+      | 속성     | 설명                          |
+      | ------ | --------------------------- |
+      | srcset | 이미지 파일 경로                   |
+      | media  | srcset에 지정한 이미지를 표시하기 위한 조건 |
+      | type   | 파일 유형                       |
+      | sizes  | 파일 크기                       |
+      
+      ```html
+      <picture>
+        <source src="images/ball-large.jpg" media="(min-width: 1024px)">
+        <source src="images/ball-medium.jpg" media="(min-width: 768px)">
+        <source src="images/ball-small.jpg" media="(min-width: 320px)">
+        <img src="images/ball.jpg" alt="ball image" style="width:100%">
+      </picture>
+      ```
+      
+      화면크기에 따라 불러올 파일 지정, 인식을 못할경우 일반 ball이미지 불러옴
+
+
+
+- 가변 비디오
+  
+  - max-width 속성을 100%로 지정
+
+
+
+## 10. 미디어 쿼리
+
+접속하는 장치에 따라 특정한 css스타일을 사용하도록 함
+
+- 미디어 쿼리 구문
+  
+  @media [only | not] 미디어 유형 [and 조건] * [and 조건]
+  
+  - only: 미디어 쿼리를 지원하는 웹 브라우저에서만 조건을 인식, 거의 사용 안함
+  
+  - not: not 뒤에 지정하는 유형을 제외하고, 나머지 적용 
+
+- 미디어 유형의 종류
+  
+  - all, print, screen, tv, aural, braille, handheld, projection, tty, embossed
+
+- 미디어 쿼리 조건
+  
+  - 웹 문서의 가로 너비와 세로 높이(뷰포트)
+    
+    | 가로,세로 값 설정 속성         | 설명                  |
+    | --------------------- | ------------------- |
+    | width, height         | 웹 페이지의 가로 너비, 세로 높이 |
+    | min-width, min-height | 최소 너비, 최소 높이        |
+    | max-width, max-height | 최대 너비, 최대 높이        |
+  
+  - 화면 회전
+    
+    - orientation 속성을 사용해서 화면 방향 체크
+    
+    | 속성                     | 설명        |
+    | ---------------------- | --------- |
+    | orientation: portrait  | 단말기 세로 방향 |
+    | orientation: landscape | 단말기 가로 방향 |
+
+- 미디어 쿼리 중단점 만들기
+  
+  - 예시
+  
+  - 스마트폰 세로
+    
+    ```css
+    @media only screen and (min-width: 320px) { }
+    ```
+  
+  - 스마트폰 가로
+    
+    ```css
+    @media only screen and (min-width: 480px) { }
+    ```
+  
+  - 태블릿 세로
+    
+    ```css
+    @media only screen and (min-width: 760px) { }
+    ```
+  
+  - 태블릿 가로, 데스크톱
+    
+    ```css
+    @media only screen and (min-width: 1024px) { }
+    ```
+
+- 외부 css 연결
+  
+  - css파일 하나에 다 작성할 수도 있지만 화면 크기별로 css파일을 나눠서도 사용함
+    
+    <head>에 작성
+    
+    ```html
+    <link rel="stylesheet" media="미디어 쿼리 조건" href="css 파일경로">
+    ```
+  
+  - import 구문 사용
+    
+    <style>에 작성
+    
+    ```css
+    @import url(css파일 경로) 미디어 쿼리 조건
+    ```
+
+
+
+## 11. 플렉스
+
+- 그리드 레이아웃을 기본으로, 플렉스 박스를 원하는 위치에 배치하는 것
+
+- 플렉스 구조
+  
+  - flex container: flex item 묶음
+  
+  - flex item: 플레스 컨테이너에 담기는 요소들
+  
+  - main axis(주축): 기본 방향 / 왼쪽에서 오른쪽
+  
+  - cross axis(교차축): 주축과 교차되는 방향 / 위에서 아래
+
+- display 속성
+  
+  - 배치 요소들을 감싸는 부모 요소를 플레스 컨테이너로 지정
+    
+    display: flex;
+    
+    | 속성 값        | 설명                 |
+    | ----------- | ------------------ |
+    | flex        | 플렉스 박스로 지정         |
+    | inline-flex | 플렉스 박스를 인라인 요소로 정의 |
+
+- flex-direction 속성
+  
+  - 플렉스 항목 배치 방향 지정
+    
+    | 속성 값           | 설명                              |
+    | -------------- | ------------------------------- |
+    | row            | 주축을 가로로 교차축을 세로로 지정(왼쪽에서 오른쪽으로) |
+    | row-inverse    | 주축을 가로로 교차축을 세로로 지정(오른쪽에서 왼쪽으로) |
+    | column         | 주축을 세로로 교차축을 가로로 지정(위에서 아래로)    |
+    | column-inverse | 주축을 세로로 교차축을 가로로 지정(아래에서 위로)    |
+
+- flex-wrap 속성
+  
+  - 컨테이너 박스를 벗어나는 항목의 배치
+    
+    | 속성 값         | 설명                                |
+    | ------------ | --------------------------------- |
+    | no-wrap      | 플렉스 항목들을 한 줄에 표시, 기본값             |
+    | wrap         | 플렉스 항목들을 여러 줄에 표시                 |
+    | wrap-reverse | 플렉스 항목들을 여러 줄에 표시하되 기존 방향과 반대로 배치 |
+
+- flex-flow 속성
+  
+  - 플렉스 배치 방향과 줄 배치를 한번에 지정
+  
+  - 기본값은 flex-flow: row no-wrap
+  
+  - flex-flow: 플렉스방향 , 플렉스 줄 배치
+
+- order 속성
+  
+  - 플렉스 항목의 배치 순서 바꾸기
+  
+  - order 값에 지정된 순서에 따라 배치
+
+- justify-content 속성
+  
+  - 플렉스 항목을 주축 방향으로 배치할 때의 배치 기준
+    
+    | 속성 값          | 설명                                            |
+    | ------------- | --------------------------------------------- |
+    | flex-start    | 주축의 시작점을 기준으로 배치                              |
+    | flex-end      | 주축의 끝점을 기준으로 배치                               |
+    | center        | 주축의 중앙을 기준으로 배치                               |
+    | space-between | 첫번째와 마지막 항목을 시작점과 끝점에 배치 후 중앙 항목들은 같은 간격으로 배치 |
+    | space-around  | 모든 플렉스 항목들을 같은 간격으로 배치                        |
+
+- align-items 속성, align-self 속성
+  
+  - 교차축을 기준으로 배치
+  
+  | 속성 값       | 설명                                                    |
+  | ---------- | ----------------------------------------------------- |
+  | stretch    | 플렉스 항목을 확장해 교차축을 꽉 채움, 기본값                            |
+  | flex-start | 교차축의 시작점을 기준으로 배치                                     |
+  | flex-end   | 교차축의 끝점을 기준으로 배치                                      |
+  | center     | 교차축의 중앙을 기준으로 배치                                      |
+  | baseline   | 시작점과 글자 기준선이 가장 먼 플레스 항목을 시작점에 배치, 나머지를 그 기준선을 맞추어 배치 |
+
+- align-content 속성
+  
+  - 플렉스 항목이 여러 줄로 표시될 때 교차 축 기준의 배치
+  
+  - 속성 값
+    
+    - flex-start
+    
+    - flex-end
+    
+    - center
+    
+    - space-between
+    
+    - space-around
+
+- flex 속성
+  
+  - 플렉스 항목의 크기 조절
+  
+  - flex-grow, flex-shrink, flex-basis 속성
+  
+  - 각 별개의 속성이지만 따로 쓰지 않고 flex 속성으로 묶어 사용
+  
+  - flex: flex-grow 값   flex-shrink 값    flex-basis 값  |   auto   |   initial
+    
+    | 속성 값        | 설명                                                                |
+    | ----------- | ----------------------------------------------------------------- |
+    | flex-grow   | 플렉스 항목의 너비를 얼마나 늘어나게 할지 지정                                        |
+    | flex-shrink | 플렉스 항목의 너비를 얼마나 줄어들게 할지 지정                                        |
+    | flex-basis  | 플렉스 항목의 기본 크기를 지정                                                 |
+    | initial     | 항목의 width/height 값에 의해 크기가 결정되는데 플렉스 컨테이너의 공간이 부족할 경우, 최소 크기까지 줄임 |
+    | auto        | 항목의 width/height 값에 의해 크기가 결정되지만 플렉스 컨테이너의 공간에 따라 늘이거나 줄임         |
+    
+    - flex-basis: width 속성처럼 너비 값을 지정할 수도 있고 0이나 auto를 지정할 수도 있음, 0일 경우 flext-grow와 flex-shrink의 인수 값을 함께 사용하고 auto일 경우 플렉스 항목의 너비 값을 사용
+    
+    - flex: initial == flex: 0 1 auto
+    
+    - flex: auto == flex: 1 1 auto
+    
+    - flex: none == flex: 0 0 auto
