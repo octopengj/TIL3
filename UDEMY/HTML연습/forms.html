@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Forms Demo</title>
+</head>
+
+<body>
+  <!-- name 속성 중요, label과 연결 -->
+  <h1>Forms Demo</h1>
+
+  <form action="/tacos">
+    <p>
+      <label for="username">Enter a Username:</label>
+      <input type="text" placeholder="username" id="username" name="username">
+    </p>
+    <p>
+      <label for="password">Enter a Password:</label>
+      <input type="password" placeholder="password" id="password" name="password">
+    </p>
+    <p>
+      <label for="color">Enter a Color:</label>
+      <input type="color" id="color" name="color">
+    </p>
+    <p>
+      <label for="number">Enter a Number:</label>
+      <input type="number" placeholder="enter a number" id="number" name="num">
+    </p>
+    <button type="submit">Submit</button>
+    <input type="submit" value="Click Me">
+  </form>
+
+</body>
+
+</html>
