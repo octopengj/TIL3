@@ -1,0 +1,50 @@
+section {
+  background-color: #6d6875;
+  width: 800px;
+  height: 800px;
+}
+
+div {
+  background-color: #e5989b;
+  width: 50%;
+  height: 50%;
+}
+
+h2 {
+  font-size: 3em;
+  margin-left: 1em;
+}
+h3 {
+  font-size: 1.5em;
+}
+p {
+  font-size: 1em;
+}
+article {
+  font-size: 20px;
+}
+
+/* 부모값이 바뀜에 따른 버튼모양 비교 */
+/* px사용 */
+/* button {
+  font-size: 30px;
+  padding: 0 30px;
+  background-color: #2a9d8f;
+  border-radius: 15px;
+  color: white;
+} */
+
+/* em사용 */
+button {
+  font-size: 1em;
+  padding: 0 1em;
+  border-radius: 0.5em;
+  background-color: #2a9d8f;
+  color: white;
+}
+
+/* em의 단점 */
+/* 중첩이되면 계속 점점 커진다 이럴경우 rem을 사용하는게 좋음*/
+ul {
+  font-size: 1.5em;
+}
