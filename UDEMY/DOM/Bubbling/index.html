@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bubbling</title>
+
+  <style>
+    .hide {
+      display: none;
+    }
+  </style>
+</head>
+
+<body>
+
+  <section onclick="alert('section clicked')">
+    <p onclick="alert('paragraph clicked')">
+      paragraph:
+      <button onclick="alert('button clicked')">click</button>
+    </p>
+  </section>
+  <!-- 버튼을 클릭하면 중첩된 모든것이 다 클릭된다. 버블링현상-->
+
+  <!-- 다른 예시 -->
+  <!-- 버튼을 클릭하면 색이 바뀌고 hide를 클릭하면 숨겨짐 -->
+  <div id="container">
+    Click To hide
+    <button id="changeColor">Change Color</button>
+  </div>
+  <script src="app.js"></script>
+</body>
+
+</html>
