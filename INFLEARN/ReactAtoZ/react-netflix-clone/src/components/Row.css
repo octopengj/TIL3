@@ -44,12 +44,10 @@ h2 {
 }
 .arrow {
   transition: 400ms all ease-in-out;
-  color: white;
 }
 .arrow:hover {
   transition: 400ms all ease-in-out;
   transform: scale(1.5);
-  color: white;
 }
 .slider:hover .slider__arrow-left {
   transition: 400ms all ease-in-out;
